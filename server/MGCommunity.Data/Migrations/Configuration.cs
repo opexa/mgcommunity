@@ -21,7 +21,7 @@ namespace MGCommunity.Data.Migrations
 			SeedRolesAndUsers(context);
 			SeedSectionsAndCategories(context);
 		}
-
+		
 		private User SeedRolesAndUsers(MGCContext context)
 		{
 			if(!context.Users.Any())
@@ -39,6 +39,7 @@ namespace MGCommunity.Data.Migrations
 
 				var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 				var roleCreateResult = roleManager.Create(new IdentityRole("Administrator"));
+				var roleTeacherCreateResult = roleManager.Create(new IdentityRole("Teacher"));
 				var roleUserCreateResult = roleManager.Create(new IdentityRole("Student"));
 
 				if (!roleUserCreateResult.Succeeded)
@@ -62,6 +63,8 @@ namespace MGCommunity.Data.Migrations
 				return adminUser;
 			}
 			return null;
+
+			// SEED TEACHERS HERE
 		}
 
 		private static void SeedSectionsAndCategories(MGCContext context)

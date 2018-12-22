@@ -19,6 +19,21 @@ namespace MGCommunity.Data
 			return new MGCContext();
 		}
 
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<User>()
+								.HasMany<Topic>(u => u.Topis)
+								.WithMany(t => t.Participants)
+								.Map(cs =>
+								{
+									cs.MapLeftKey("UserId");
+									cs.MapRightKey("TopicId");
+									cs.ToTable("UserTopic");
+								});
+
+			base.OnModelCreating(modelBuilder);
+		}
+
 		public virtual IDbSet<Section> Sections { get; set; }
 
 		public virtual IDbSet<Category> Categories { get; set; }

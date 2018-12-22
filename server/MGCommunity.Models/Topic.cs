@@ -9,6 +9,7 @@ namespace MGCommunity.Models
 		public Topic()
 		{
 			this.Replies = new HashSet<Reply>();
+			this.Participants = new HashSet<User>();
 		}
 
 		[Key]
@@ -34,5 +35,7 @@ namespace MGCommunity.Models
 		public int RepliesCount { get; set; }
 
 		public virtual ICollection<Reply> Replies { get; set; }
+
+		public virtual ICollection<User> Participants { get; set; }
 	}
 }

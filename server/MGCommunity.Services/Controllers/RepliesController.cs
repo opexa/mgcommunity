@@ -37,8 +37,13 @@
 				PostedOn = DateTime.Now,
 				TopicId = model.TopicId
 			};
-
+			
 			this.Data.Replies.Add(newReply);
+
+			var topic = this.Data.Topics.FindById(model.TopicId);
+			var user = this.Data.Users.FindById(loggedUserId);
+			topic.Participants.Add(user);
+			
 			this.Data.SaveChanges();
 
 			return this.Ok(new { message = "Коментарът беше публикуван успешно", reply = newReply });
