@@ -1,0 +1,6 @@
+namespace MGCommunity.Services.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}

@@ -1,0 +1,14 @@
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\MGCommunity.Models.dll.config
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\MGCommunity.Models.dll
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\MGCommunity.Models.pdb
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\EntityFramework.dll
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\EntityFramework.xml
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\obj\Debug\MGCommunity.Models.dll
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\obj\Debug\MGCommunity.Models.pdb
+C:\Users\nikok\Desktop\MGCommunity\MGCommunity.Models\obj\Debug\MGCommunity.Models.csprojResolveAssemblyReference.cache
