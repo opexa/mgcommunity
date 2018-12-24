@@ -25,3 +25,4 @@ C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Models\bin\Debug\Microsoft
 C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Models\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Models\obj\Debug\MGCommunity.Models.dll
 C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Models\obj\Debug\MGCommunity.Models.pdb
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Models\obj\Debug\MGCommunity.Models.csprojResolveAssemblyReference.cache

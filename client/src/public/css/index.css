@@ -1,2 +1,9 @@
 @import './bootstrap.fixed.css';
 @import '~izitoast/dist/css/iziToast.css';
+
+@import './login.css';
+
+.form-error {
+  color: red;
+  font-weight: bolder;
+}

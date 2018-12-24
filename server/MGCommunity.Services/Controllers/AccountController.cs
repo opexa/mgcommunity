@@ -20,6 +20,7 @@
 	using MGCommunity.Services.App_Start;
 	using Models.BindingModels;
 	using UserSessionUtils;
+	using System.Linq;
 
 	[RoutePrefix("api/Account")]
 	public class AccountController : BaseApiController
@@ -57,13 +58,16 @@
 		public async Task<IHttpActionResult> Register(RegisterBindingModel model)
 		{
 			if (model == null)
-			{
 				return this.BadRequest("Невалидни данни.");
-			}
-
+			
 			if (!ModelState.IsValid)
-			{
 				return BadRequest(this.ModelState);
+
+			bool alreadyExisting = this.Data.Users.All().Any(u => u.UserName == model.Username);
+			if (alreadyExisting)
+			{
+				ModelState.AddModelError("error", "Съществува акаунт с такова потребителско име");
+				return this.BadRequest(ModelState);
 			}
 
 			User user = new User

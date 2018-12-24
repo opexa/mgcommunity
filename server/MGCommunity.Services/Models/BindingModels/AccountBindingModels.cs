@@ -8,14 +8,13 @@ namespace MGCommunity.Services.Models.BindingModels
 {
 	public class RegisterBindingModel
 	{
-		[Required]
-		[Display(Name = "User name")]
+		[Required(ErrorMessage = "Моля въведете потребителско име")]
 		public string Username { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Моля въведете собствено име.")]
 		public string FirstName { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Моля въведете фамилно име.")]
 		public string LastName { get; set; }
 
 		[Required]
@@ -33,10 +32,10 @@ namespace MGCommunity.Services.Models.BindingModels
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Въведете първа година в МГ")]
 		public short StartYear { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Моля въведете буква паралелка.")]
 		public short Class { get; set; }
 	}
 

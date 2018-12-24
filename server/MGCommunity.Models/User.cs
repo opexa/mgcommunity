@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -17,11 +18,11 @@ namespace MGCommunity.Models
 			this.Likes = new HashSet<Like>();
 			this.Topis = new HashSet<Topic>();
 		}
-
+		
 		public string FirstName { get; set; }
 
 		public string LastName { get; set; }
-
+				
 		public short StartYear { get; set; }
 
 		public UserClass Class { get; set; }

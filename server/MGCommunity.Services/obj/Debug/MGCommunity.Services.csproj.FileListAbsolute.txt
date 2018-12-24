@@ -202,3 +202,12 @@ C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\Antlr3.Runtim
 C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\obj\Debug\MGCommunity.Services.csprojResolveAssemblyReference.cache
 C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\obj\Debug\MGCommunity.Services.dll
 C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\obj\Debug\MGCommunity.Services.pdb
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\EntityFramework6.Npgsql.dll
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\Npgsql.dll
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\EntityFramework6.Npgsql.xml
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\Npgsql.pdb
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\Npgsql.xml
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\nikok\Desktop\mgcommunity\server\MGCommunity.Services\bin\System.Threading.Tasks.Extensions.xml
