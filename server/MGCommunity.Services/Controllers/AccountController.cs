@@ -121,14 +121,14 @@
 			};
 			var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
 			var tokenServiceResponse = await testServer.HttpClient.PostAsync(Startup.TokenEndpointPath, requestParamsFormUrlEncoded);
+			var jsSerializer = new JavaScriptSerializer();
+
+			var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
+			var responseData = jsSerializer.Deserialize<Dictionary<string, string>>(responseString);
 
 			if (tokenServiceResponse.StatusCode == HttpStatusCode.OK)
 			{
 				// Sucessful login --> create user session in the database
-				var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
-				var jsSerializer = new JavaScriptSerializer();
-				var responseData =
-						jsSerializer.Deserialize<Dictionary<string, string>>(responseString);
 				var authToken = responseData["access_token"];
 				var username = responseData["username"];
 				var userSessionManager = new UserSessionManager();
@@ -137,6 +137,20 @@
 				// Cleanup: delete expired sessions fromthe database
 				userSessionManager.DeleteExpiredSessions();
 			}
+			else
+			{
+				// Customize response error
+				if (responseData.Any(err => err.Value == "invalid_grant"))
+				{
+					tokenServiceResponse = Request.CreateResponse(HttpStatusCode.BadRequest, new 
+					{
+						success = false,
+						message = "Грешно потребителско име или парола."
+					});
+				}				
+			}
+
+			this.Data.Dispose();
 
 			return this.ResponseMessage(tokenServiceResponse);
 		}

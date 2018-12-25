@@ -12,6 +12,8 @@ namespace MGCommunity.Models
 
 		public int SectionId { get; set; }
 
+		public int TopicsCount { get; set; }
+
 		public virtual Section Section { get; set; }
 	}
 }

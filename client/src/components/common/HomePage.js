@@ -1,9 +1,27 @@
 import React from 'react'
+import Auth from '../account/Auth'
 
-const HomePage = (props) => (
-  <div>
-    <h1>Hello niggas</h1>
-  </div>
-)
+class HomePage extends React.Component { 
+  constructor (props) {
+    super(props)
+
+  }
+
+  render () {
+    return  (
+      <div>
+        {Auth.isUserAuthenticated() ? 
+        (
+          <div>
+            <h1>Drasti shefe :)</h1>
+          </div>
+        ) : 
+        (
+          <h1>Otivai si ili sa registrirai pedal</h1>
+        ) }
+      </div>
+    )
+  }
+}
 
 export default HomePage

@@ -98,6 +98,11 @@
 			return this.context.SaveChanges();
 		}
 
+		public void Dispose()
+		{
+			this.context.Database.Connection.Close();
+		}
+
 		private IRepository<T> GetRepository<T>() where T : class
 		{
 			if (!this.repositories.ContainsKey(typeof(T)))

@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
     this.state = {
       user: {
         username: 'test',
-        password: 'edtkl@N12'
+        password: 'edtklan12'
       },
       error: ''
     }
@@ -41,12 +41,11 @@ class LoginPage extends React.Component {
   }
 
   handleUserLoggedIn (data) {
-    if (!data.error) {
-      Auth.authenticateUser(data.token)
-      this.props.history.push('/')
-    } else {
-      iziToast.error({ message: 'Възникна някаква грешка. Моля опитайте отново.' })
+    if (data.success === false) {
+      return iziToast.error({ message: data.message || 'Възникна някаква грешка. Моля опитайте отново.' })
     }
+    Auth.authenticateUser(data.token)
+    this.props.history.push('/')
   }
 
   validateLoginForm () {

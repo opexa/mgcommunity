@@ -12,11 +12,14 @@ namespace MGCommunity.Data
 		public MGCContext() : base("MGCContext")
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<MGCContext, Configuration>());
+
+			this.Configuration.LazyLoadingEnabled = false;
 		}		
 
 		public static MGCContext Create()
 		{
 			return new MGCContext();
+
 		}
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,6 +33,9 @@ namespace MGCommunity.Data
 									cs.MapRightKey("TopicId");
 									cs.ToTable("UserTopic");
 								});
+
+			modelBuilder.Entity<Section>()
+									.HasMany<Category>(s => s.Categories);
 
 			base.OnModelCreating(modelBuilder);
 		}

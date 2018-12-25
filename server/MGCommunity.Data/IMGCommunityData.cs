@@ -28,6 +28,8 @@ namespace MGCommunity.Data
 
 		IRepository<UserSession> UserSessions { get; }
 
+		void Dispose();
+
 		int SaveChanges();
 	}
 }

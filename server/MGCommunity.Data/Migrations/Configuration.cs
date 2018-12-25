@@ -84,17 +84,17 @@ namespace MGCommunity.Data.Migrations
 
 				var categories = new List<Category>
 				{
-					new Category() { Name = "Правила", Section = general },
-					new Category { Name = "Новини", Section = general },
-					new Category { Name = "Състезания", Section = general },
-					new Category { Name = "Предприемачество", Section = groups },
-					new Category { Name = "Физика и Астрономия", Section = groups },
-					new Category { Name = "Спорт", Section = groups },
-					new Category { Name = "Математика", Section = groups },
-					new Category { Name = "Предложения за платформата", Section = ideas },
-					new Category { Name = "Съобщаване за проблеми", Section = ideas },
-					new Category { Name = "Развлечения", Section = other },
-					new Category { Name = "Похвали се!", Section = other }
+					new Category() { Name = "Правила", Section = general, TopicsCount = 0 },
+					new Category { Name = "Новини", Section = general, TopicsCount = 0 },
+					new Category { Name = "Състезания", Section = general, TopicsCount = 0 },
+					new Category { Name = "Предприемачество", Section = groups, TopicsCount = 0 },
+					new Category { Name = "Физика и Астрономия", Section = groups, TopicsCount = 0 },
+					new Category { Name = "Спорт", Section = groups, TopicsCount = 0 },
+					new Category { Name = "Математика", Section = groups, TopicsCount = 0 },
+					new Category { Name = "Предложения за платформата", Section = ideas, TopicsCount = 0 },
+					new Category { Name = "Съобщаване за проблеми", Section = ideas, TopicsCount = 0 },
+					new Category { Name = "Развлечения", Section = other, TopicsCount = 0 },
+					new Category { Name = "Похвали се!", Section = other, TopicsCount = 0 }
 				};
 
 				foreach (var category in categories)

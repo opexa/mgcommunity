@@ -58,7 +58,7 @@ const handleJsonResponse = res => res.json()
 
 const handleServerError = err => ({
   success: false,
-  error: err || 'Възникна някаква грешка. Моля опитайте отново.'
+  error: err.error_description || err || 'Възникна някаква грешка. Моля опитайте отново.'
 })
 
 const applyAuthorizationHeader = (options, authenticated) => {

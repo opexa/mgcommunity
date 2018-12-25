@@ -1,10 +1,13 @@
-﻿using MGCommunity.Data;
+﻿using AutoMapper;
+using MGCommunity.Data;
 using MGCommunity.Models;
 using MGCommunity.Services.App_Start;
 using MGCommunity.Services.Models.BindingModels;
+using MGCommunity.Services.Models.ViewModels;
 using MGCommunity.Services.UserSessionUtils;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,6 +22,22 @@ namespace MGCommunity.Services.Controllers
 		public SectionsController(IMGCommunityData data) : base(data) { }
 
 		public SectionsController() : base(new MGCommunityData()) { }
+
+		[HttpGet]
+		[Route("GetAll")]
+		[SessionAuthorize(Roles = "Administrator, Student, Teacher")]
+		// POST api/Section/GetAll
+		public IHttpActionResult GetAll()
+		{
+			var sections = this.Data.Sections.All().Include(s => s.Categories);
+
+			if (this.User.IsInRole("Student") || this.User.IsInRole("Teacher"))
+				sections = sections.Where(s => s.Visible == true);
+
+			var data = Mapper.Map<IEnumerable<HomeSectionViewModel>>(sections);
+
+			return this.Ok(data);
+		}
 
 		[HttpPost]
 		[Route("Create")]

@@ -10,7 +10,7 @@ class Navbar extends React.Component {
           <Link className='navbar-brand' to='/'>Community</Link>
           { Auth.isUserAuthenticated() ? (
             <ul className='navbar-nav mr-auto'>
-              <li className='nav-item dropdown'>
+              {/* <li className='nav-item dropdown'>
                 <Link className='nav-link dropdown-toggle' data-toggle='dropdown' id='progress' role='button' aria-haspopup='true' aria-expanded='false' to='/progress'>
                   MANAGER &nbsp;<i className='fas fa-tasks'></i>&nbsp;
                   <span className='sr-only'>(current)</span>
@@ -30,7 +30,7 @@ class Navbar extends React.Component {
                   CONFIGURE &nbsp;<i className='fas fa-user-cog'></i>
                   <span className='sr-only'>(current)</span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           ) : (
             <ul className='navbar-nav mr-auto'>

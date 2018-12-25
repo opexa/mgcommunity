@@ -30,7 +30,8 @@
 			var newCategory = new Category
 			{
 				Name = model.Name,
-				SectionId = model.SectionId
+				SectionId = model.SectionId,
+				TopicsCount = 0
 			};
 			this.Data.Categories.Add(newCategory);
 			this.Data.SaveChanges();
@@ -49,7 +50,7 @@
 
 			this.Data.Categories.Delete(category);
 			this.Data.SaveChanges();
-
+			
 			return this.Ok(new { message = "Категорията е изтрита." });
 		}
 	}

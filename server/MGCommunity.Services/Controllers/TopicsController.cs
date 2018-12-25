@@ -48,6 +48,8 @@
 				Pinned = false,
 				RepliesCount = 1
 			};
+
+			this.Data.Categories.FindById(model.CategoryId).TopicsCount += 1;
 			this.Data.Topics.Add(newTopic);
 			this.Data.SaveChanges();
 

@@ -17,9 +17,9 @@ class RegisterPage extends React.Component {
         firstName: 'Test',
         lastName: 'Testov',
         startYear: 2012,
-        class: 'G',
-        password: '123456',
-        confirmPassword: '123456'
+        class: 0,
+        password: 'edtklan12',
+        confirmPassword: 'edtklan12'
       }
     }
 
@@ -36,7 +36,7 @@ class RegisterPage extends React.Component {
   }
 
   handleUserRegistered (data) {
-    if (!data.modelState.length === 0) {
+    if (data.modelstate === undefined) {
       Auth.authenticateUser(data.access_token)
       this.props.history.push('/')
     } else {
@@ -77,9 +77,7 @@ class RegisterPage extends React.Component {
 
   showModelErrors (model) {
     if (Object.keys(model).length > 0) {
-      Object.keys(model).map((key) => {
-        izitoast.error({ message: model[key][0] })
-      })
+      Object.keys(model).map((key) => izitoast.error({ message: model[key][0] }))
     } else {
       izitoast.error({ message: 'Възникна някаква грешка в сървъра. Моля опитайте отново.' })
     }
