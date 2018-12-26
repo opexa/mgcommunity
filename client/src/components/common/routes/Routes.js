@@ -2,11 +2,13 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import PrivateRoute from './PrivateRoute'
 
-import HomePage from '../HomePage'
+import HomePage from '../../home/HomePage'
 
 import LoginPage from '../../account/login/LoginPage'
 import RegisterPage from '../../account/register/RegisterPage'
 import LogoutPage from '../../account/LogoutPage'
+
+import FeedPage from '../../category/FeedPage'
 
 const Routes = (props) => (
   <Switch>
@@ -14,7 +16,9 @@ const Routes = (props) => (
 
     <Route path='/account/login' component={LoginPage} />
     <Route path='/account/register' component={RegisterPage} />
-    <Route path='/account/logout' component={LogoutPage} />
+    <PrivateRoute path='/account/logout' component={LogoutPage} />
+
+    <PrivateRoute path='/category/feed/:id' component={FeedPage} />
   </Switch>
 )
 

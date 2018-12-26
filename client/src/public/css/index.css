@@ -1,7 +1,9 @@
 @import './bootstrap.fixed.css';
+@import '~@fortawesome/fontawesome-free/css/all.css';
 @import '~izitoast/dist/css/iziToast.css';
 
 @import './login.css';
+@import './home.css';
 
 .form-error {
   color: red;

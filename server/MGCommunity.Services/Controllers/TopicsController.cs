@@ -20,7 +20,7 @@
 		// POST api/Topic/Create
 		[HttpPost]
 		[Route("Create")]
-		[SessionAuthorize(Roles = "Administrator, Student")]
+		[SessionAuthorize(Roles = "Administrator, Student, Teacher")]
 		public IHttpActionResult Create(CreateTopicBindingModel model)
 		{
 			if (!this.ModelState.IsValid)
@@ -48,6 +48,9 @@
 				Pinned = false,
 				RepliesCount = 1
 			};
+
+			var loggedUser = this.Data.Users.FindById(loggedUserId);
+			newTopic.Participants.Add(loggedUser);
 
 			this.Data.Categories.FindById(model.CategoryId).TopicsCount += 1;
 			this.Data.Topics.Add(newTopic);

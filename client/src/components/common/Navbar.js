@@ -42,7 +42,7 @@ class Navbar extends React.Component {
             <ul className='navbar-nav'></ul>
             { Auth.isUserAuthenticated() ? (
               <ul className='nav navbar-nav ml-auto'>
-                <li className='nav-item'><Link className='nav-link' to='/profile'>Профил &nbsp; <i className='far fa-user'></i></Link></li>
+                <li className='nav-item'><Link className='nav-link' to='/profile'>Профил &nbsp; <i className='fas fa-user'></i></Link></li>
                 <li className='nav-item'><Link className='nav-link' to='/account/logout'>Изход</Link></li>
               </ul>
             ) : (

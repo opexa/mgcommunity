@@ -36,7 +36,7 @@ class RegisterPage extends React.Component {
   }
 
   handleUserRegistered (data) {
-    if (data.modelstate === undefined) {
+    if (data.modelState === undefined) {
       Auth.authenticateUser(data.access_token)
       this.props.history.push('/')
     } else {

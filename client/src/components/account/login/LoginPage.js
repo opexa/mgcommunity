@@ -44,7 +44,7 @@ class LoginPage extends React.Component {
     if (data.success === false) {
       return iziToast.error({ message: data.message || 'Възникна някаква грешка. Моля опитайте отново.' })
     }
-    Auth.authenticateUser(data.token)
+    Auth.authenticateUser(data.access_token)
     this.props.history.push('/')
   }
 

@@ -13,7 +13,7 @@ namespace MGCommunity.Data
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<MGCContext, Configuration>());
 
-			this.Configuration.LazyLoadingEnabled = false;
+			//this.Configuration.LazyLoadingEnabled = false;
 		}		
 
 		public static MGCContext Create()
