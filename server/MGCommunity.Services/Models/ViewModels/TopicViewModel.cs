@@ -13,13 +13,13 @@ namespace MGCommunity.Services.Models.ViewModels
 
 		public int RepliesCount { get; set; } 
 
-		public string AuthorId { get; set; }
-
+		public int ParticipantsCount { get; set; }
+	
 		public string AuthorUsername { get; set; }
 
-		public DateTime CreatedOn { get; set; }
+		public string CreatedOn { get; set; }
 
-		public DateTime LastReply { get; set; }
+		public string LastReply { get; set; }
 
 		public string LastReplyBy { get; set; }
 	}

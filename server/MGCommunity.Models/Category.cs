@@ -20,6 +20,8 @@ namespace MGCommunity.Models
 
 		public int TopicsCount { get; set; }
 
+		public string Description { get; set; }
+
 		public virtual Section Section { get; set; }
 
 		public virtual ICollection<Topic> Topics { get; set; }

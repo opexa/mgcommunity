@@ -19,7 +19,7 @@
 		[HttpGet]
 		[Route("GetSections")]
 		[SessionAuthorize]
-		// POST api/Home/GetSections
+		// GET api/Home/GetSections
 		public IHttpActionResult GetSections()
 		{
 			var sections = this.Data.Sections.All().Include(s => s.Categories);

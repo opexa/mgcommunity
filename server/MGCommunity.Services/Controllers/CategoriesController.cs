@@ -24,10 +24,26 @@
 		public IHttpActionResult Feed(int id, int page)
 		{
 			int skip = (page - 1) * 10;
-			var topics = this.Data.Categories.FindById(id).Topics.OrderByDescending(t => t.CreatedOn).Skip(skip).Take(10);
+			var category = this.Data.Categories.FindById(id);
+			var topics = category.Topics.OrderByDescending(t => t.CreatedOn).Skip(skip).Take(10);
 
 			var data = Mapper.Map<IEnumerable<ShortTopicViewModel>>(topics);
-			return this.Ok(data);
+			if (page == 1)
+			{
+				return this.Ok(new
+				{
+					category = new
+					{
+						name = category.Name,
+						description = category.Description
+					},
+					topics = data
+				});
+			}
+			return this.Ok(new
+			{
+				topics = data
+			});
 		}
 
 		// POST api/Category/Create

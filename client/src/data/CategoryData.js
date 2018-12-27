@@ -3,7 +3,7 @@ const baseUrl = 'category'
 
 class CategoryData {
   static getFeed(categoryId, page) {
-    return Data.get(`${baseUrl}/feed/${categoryId}?page=${page}`, true)
+    return Data.get(`${baseUrl}/feed?id=${categoryId}&page=${page}`, true)
   }
 }
 

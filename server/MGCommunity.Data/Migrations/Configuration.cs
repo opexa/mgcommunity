@@ -20,6 +20,7 @@ namespace MGCommunity.Data.Migrations
 		{
 			SeedRolesAndUsers(context);
 			SeedSectionsAndCategories(context);
+			SeedTopicsAndReplies(context);
 		}
 		
 		private User SeedRolesAndUsers(MGCContext context)
@@ -84,17 +85,17 @@ namespace MGCommunity.Data.Migrations
 
 				var categories = new List<Category>
 				{
-					new Category() { Name = "Правила", Section = general, TopicsCount = 0 },
-					new Category { Name = "Новини", Section = general, TopicsCount = 0 },
-					new Category { Name = "Състезания", Section = general, TopicsCount = 0 },
-					new Category { Name = "Предприемачество", Section = groups, TopicsCount = 0 },
-					new Category { Name = "Физика и Астрономия", Section = groups, TopicsCount = 0 },
-					new Category { Name = "Спорт", Section = groups, TopicsCount = 0 },
-					new Category { Name = "Математика", Section = groups, TopicsCount = 0 },
-					new Category { Name = "Предложения за платформата", Section = ideas, TopicsCount = 0 },
-					new Category { Name = "Съобщаване за проблеми", Section = ideas, TopicsCount = 0 },
-					new Category { Name = "Развлечения", Section = other, TopicsCount = 0 },
-					new Category { Name = "Похвали се!", Section = other, TopicsCount = 0 }
+					new Category() { Name = "Правила", Section = general, TopicsCount = 3, Description = "Правилата за ползване на платформата." },
+					new Category { Name = "Новини", Section = general, TopicsCount = 3, Description = "Всички новини свързани с училище." },
+					new Category { Name = "Състезания", Section = general, TopicsCount = 3, Description = "Информация относно предстоящи състезания." },
+					new Category { Name = "Предприемачество", Section = groups, TopicsCount = 3, Description = "Свържи се с останалите предприемачи в MG!" },
+					new Category { Name = "Физика и Астрономия", Section = groups, TopicsCount = 3, Description = "Клубът на бъщетите физици." },
+					new Category { Name = "Спорт", Section = groups, TopicsCount = 3, Description = "Клубът на спортните надежди в МГ." },
+					new Category { Name = "Математика", Section = groups, TopicsCount = 3, Description = "Магазин за калкулатори." },
+					new Category { Name = "Предложения за платформата", Section = ideas, TopicsCount = 3, Description = "Сподели какво може да подобрим в платформата!" },
+					new Category { Name = "Съобщаване за проблеми", Section = ideas, TopicsCount = 3, Description = "Имаш оплакване. Сподели го тук." },
+					new Category { Name = "Развлечения", Section = other, TopicsCount = 3, Description = "Забавната част от платформата :)" },
+					new Category { Name = "Похвали се!", Section = other, TopicsCount = 3, Description = "Имаш с какво да се похвалиш? Давай смело!" }
 				};
 
 				foreach (var category in categories)
@@ -103,6 +104,83 @@ namespace MGCommunity.Data.Migrations
 				}
 
 				context.SaveChanges();
+			}
+		}
+
+		public static void SeedTopicsAndReplies(MGCContext context)
+		{
+			if (!context.Topics.Any())
+			{
+				var user1 = context.Users.First();
+
+				var categories = context.Categories.ToList();
+				foreach (var category in categories)
+				{
+					var topic = new Topic
+					{
+						AuthorId = user1.Id,
+						CreatedOn = DateTime.Now,
+						Locked = false,
+						Pinned = false,
+						Title = "Test topic for each category",
+						RepliesCount = 1,
+						CategoryId = category.Id
+					};
+					var topic2 = new Topic
+					{
+						AuthorId = user1.Id,
+						CreatedOn = DateTime.Now,
+						Locked = false,
+						Pinned = false,
+						Title = "Another test topic for the same category.",
+						RepliesCount = 1,
+						CategoryId = category.Id
+					};
+					var topic3 = new Topic
+					{
+						AuthorId = user1.Id,
+						CreatedOn = DateTime.Now,
+						Locked = false,
+						Pinned = false,
+						Title = "Third test topic for the category.",
+						RepliesCount = 1,
+						CategoryId = category.Id
+					};
+					context.Topics.Add(topic);
+					context.Topics.Add(topic2);
+					context.Topics.Add(topic3);
+					context.SaveChanges();
+
+					var reply = new Reply
+					{
+						AuthorId = user1.Id,
+						PostedOn = DateTime.Now,
+						TopicId = topic.Id,
+						Content = "This is the test reply"
+					};
+					var reply2 = new Reply
+					{
+						AuthorId = user1.Id,
+						PostedOn = DateTime.Now,
+						TopicId = topic2.Id,
+						Content = "This is the test reply"
+					};
+					var reply3 = new Reply
+					{
+						AuthorId = user1.Id,
+						PostedOn = DateTime.Now,
+						TopicId = topic3.Id,
+						Content = "This is the test reply"
+					};
+					topic.Participants.Add(user1);
+					topic2.Participants.Add(user1);
+					topic3.Participants.Add(user1);
+
+					topic.Replies.Add(reply);
+					topic2.Replies.Add(reply2);
+					topic3.Replies.Add(reply3);
+					context.SaveChanges();
+				}
 			}
 		}
 	}

@@ -25,7 +25,7 @@
     .section
       margin-bottom: 30px
       border-radius: 5px
-      box-shadow: 1px 3px 5px 0px rgba(133, 133, 133, 0.5)
+      box-shadow: 0px 2px 5px 0px rgba(133, 133, 133, 0.4)
 
       .section-name
         padding: 17px 0 17px 15px
@@ -46,15 +46,23 @@
           &:hover
             background: rgba(173, 173, 173, 0.15)
 
-          .category-name            
-            a
-              font-size: 0.9rem
-              font-weight: bold
-              color: #3E3F3A
-              display: inline-block
-              transition: all 0.14s ease-in-out
-              &:hover
-                // text-decoration: none
+          .category-info
+            p
+              margin: 0
+
+            .category-name   
+              a
+                font-size: 1rem
+                font-weight: bold
+                color: #3E3F3A
+                display: inline-block
+                transition: all 0.14s ease-in-out
+                &:hover
+                  // text-decoration: none
+            
+            .category-description
+              font-size: 0.8rem
+              color: #5d5e5a
             
           .category-actions
             .topics-count

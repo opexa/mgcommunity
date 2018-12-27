@@ -296,6 +296,7 @@
     <Compile Include="Controllers\RepliesController.cs" />
     <Compile Include="Controllers\SectionsController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
+    <Compile Include="Extensions\DateTimeExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
