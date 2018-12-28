@@ -25,14 +25,24 @@ namespace MGCommunity.Data
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>()
-								.HasMany<Topic>(u => u.Topis)
-								.WithMany(t => t.Participants)
-								.Map(cs =>
-								{
-									cs.MapLeftKey("UserId");
-									cs.MapRightKey("TopicId");
-									cs.ToTable("UserTopic");
-								});
+									.HasMany<Topic>(u => u.Topis)
+									.WithMany(t => t.Participants)
+									.Map(cs =>
+									{
+										cs.MapLeftKey("UserId");
+										cs.MapRightKey("TopicId");
+										cs.ToTable("UserTopic");
+									});
+
+			modelBuilder.Entity<Reply>()
+									.HasMany<User>(u => u.Likes)
+									.WithMany(r => r.Likes)
+									.Map(cs =>
+									{
+										cs.MapLeftKey("UserId");
+										cs.MapRightKey("ReplyId");
+										cs.ToTable("UserLikes");
+									});
 
 			modelBuilder.Entity<Section>()
 									.HasMany<Category>(s => s.Categories);
@@ -47,9 +57,7 @@ namespace MGCommunity.Data
 		public virtual IDbSet<Topic> Topics { get; set; }
 
 		public virtual IDbSet<Reply> Replies { get; set; }
-
-		public virtual IDbSet<Like> Likes { get; set; }
-
+		
 		public virtual IDbSet<UserSession> UserSessions { get; set; }
 
 		public virtual IDbSet<ExceptionEntry> ErrorsLog { get; set; }

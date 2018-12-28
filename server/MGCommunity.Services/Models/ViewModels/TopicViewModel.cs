@@ -17,10 +17,21 @@ namespace MGCommunity.Services.Models.ViewModels
 	
 		public string AuthorUsername { get; set; }
 
+		public string AuthorAvatar { get; set; }
+
 		public string CreatedOn { get; set; }
 
 		public string LastReply { get; set; }
 
 		public string LastReplyBy { get; set; }
+	}
+
+	public class TopicInfoViewModel
+	{
+		public string Title { get; set; }
+
+		public string AuthorUsername { get; set; }
+
+		public string CreatedOn { get; set; }
 	}
 }

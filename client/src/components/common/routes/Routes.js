@@ -10,6 +10,8 @@ import LogoutPage from '../../account/LogoutPage'
 
 import FeedPage from '../../category/FeedPage'
 
+import TopicPage from '../../topic/TopicPage'
+
 const Routes = (props) => (
   <Switch>
     <Route path='/' exact component={HomePage}/>
@@ -19,6 +21,8 @@ const Routes = (props) => (
     <PrivateRoute path='/account/logout' component={LogoutPage} />
 
     <PrivateRoute path='/category/feed/:id' component={FeedPage} />
+
+    <PrivateRoute path='/topic/:id' component={TopicPage} />
   </Switch>
 )
 

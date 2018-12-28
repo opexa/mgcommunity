@@ -77,6 +77,7 @@
 				LastName = model.LastName,
 				Email = model.Email,
 				StartYear = model.StartYear,
+				Avatar = this.DomainUrl + "/Files/Avatars/generic.jpg",
 				Class = (UserClass)model.Class
 			};
 
@@ -137,21 +138,6 @@
 				// Cleanup: delete expired sessions fromthe database
 				userSessionManager.DeleteExpiredSessions();
 			}
-			else
-			{
-				// Customize response error
-				if (responseData.Any(err => err.Value == "invalid_grant"))
-				{
-					tokenServiceResponse = Request.CreateResponse(HttpStatusCode.BadRequest, new 
-					{
-						success = false,
-						message = "Грешно потребителско име или парола."
-					});
-				}				
-			}
-
-			this.Data.Dispose();
-
 			return this.ResponseMessage(tokenServiceResponse);
 		}
 

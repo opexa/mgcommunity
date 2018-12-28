@@ -9,6 +9,7 @@ namespace MGCommunity.Services.Controllers
 	public class BaseApiController : ApiController
 	{
 		protected IMGCommunityData Data { get; set; }
+		protected readonly string DomainUrl = "http://localhost:11185/";
 
 		public BaseApiController(IMGCommunityData data)
 		{

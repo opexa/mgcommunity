@@ -6,7 +6,7 @@ const Topic = (props) => (
     <div className='topic-heading'>
       <div className="topic-creator-avatar">
         <Link to={`/user/${props.topic.authorUsername}`}>
-          <img src="https://via.placeholder.com/50" alt=""/>
+          <img src={props.topic.authorAvatar} alt=""/>
         </Link>
       </div>
       <div>
@@ -24,9 +24,9 @@ const Topic = (props) => (
     <div className="topic-replies-info">
       <div className='topic-last-reply'>
         <div>
-          Последно 
+          Последно&nbsp;
           <Link to={`/user/${props.topic.lastReplyBy}`}>
-            <b> {props.topic.lastReplyBy} </b>
+            <b>{props.topic.lastReplyBy} </b>
           </Link>
         </div>
         <div>{props.topic.lastReply}</div>

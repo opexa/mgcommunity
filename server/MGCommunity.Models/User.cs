@@ -15,7 +15,7 @@ namespace MGCommunity.Models
 		public User()
 		{
 			this.Replies = new HashSet<Reply>();
-			this.Likes = new HashSet<Like>();
+			this.Likes = new HashSet<Reply>();
 			this.Topis = new HashSet<Topic>();
 		}
 		
@@ -25,11 +25,13 @@ namespace MGCommunity.Models
 				
 		public short StartYear { get; set; }
 
+		public string Avatar { get; set; }
+
 		public UserClass Class { get; set; }
 
 		public virtual ICollection<Reply> Replies { get; set; }
 
-		public virtual ICollection<Like> Likes { get; set; }
+		public virtual ICollection<Reply> Likes { get; set; }
 
 		public virtual ICollection<Topic> Topis { get; set; }
 

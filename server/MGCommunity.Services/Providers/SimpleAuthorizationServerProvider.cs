@@ -30,16 +30,13 @@ namespace Saver.Services.Providers
 			this.publicClientId = publicClientId;
 		}
 
-		public static AuthenticationProperties CreateProperties(string username, bool isAdmin)
+		public static AuthenticationProperties CreateProperties(string username, string role)
 		{
 			IDictionary<string, string> data = new Dictionary<string, string>
-						{
-								{ "username", username },
-						};
-			if (isAdmin)
 			{
-				data.Add("isAdmin", "true");
-			}
+				{ "username", username },
+				{ "role", role }
+			};
 			return new AuthenticationProperties(data);
 		}
 
@@ -52,16 +49,20 @@ namespace Saver.Services.Providers
 
 			if (user == null)
 			{
-				context.SetError("invalid_grant", "The user name or password is incorrect.");
+				context.SetError("invalid_grant", "Грешно потребителско име или парола.");
 				return;
 			}
 
 			var oauthIdentity = await user.GenerateUserIdentityAsync(userManager, OAuthDefaults.AuthenticationType);
 			var cookiesIdentity = await user.GenerateUserIdentityAsync(userManager, CookieAuthenticationDefaults.AuthenticationType);
 
-			bool isAdmin = await userManager.IsInRoleAsync(user.Id, "Admin");
+			string userRole = "";
+			using (var dbContext = new MGCContext())
+			{
+				userRole = dbContext.Roles.Find(user.Roles.First().RoleId).Name;
+			}
 
-			AuthenticationProperties properties = CreateProperties(user.UserName, isAdmin);
+			AuthenticationProperties properties = CreateProperties(user.UserName, userRole);
 			var ticket = new AuthenticationTicket(oauthIdentity, properties);
 			context.Validated(ticket);
 			context.Request.Context.Authentication.SignIn(cookiesIdentity);

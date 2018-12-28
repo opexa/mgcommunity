@@ -8,7 +8,7 @@
 	{
 		public Reply()
 		{
-			this.Likes = new HashSet<Like>();
+			this.Likes = new HashSet<User>();
 		}
 
 		[Key]
@@ -26,6 +26,6 @@
 
 		public string Content { get; set; }
 
-		public virtual ICollection<Like> Likes{ get; set; }
+		public virtual ICollection<User> Likes{ get; set; }
 	}
 }

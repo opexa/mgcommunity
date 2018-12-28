@@ -86,21 +86,18 @@
 
 			var loggedUserId = this.User.Identity.GetUserId();
 
-			var isLiked = this.Data.Likes.All().FirstOrDefault(l => l.ReplyId == id && l.UserId == loggedUserId);
-			if (isLiked != null)
+			var isLiked = reply.Likes.Any(liker => liker.Id == loggedUserId);
+			var loggedUser = this.Data.Users.FindById(loggedUserId);
+
+			if (isLiked)
 			{
-				this.Data.Likes.Delete(isLiked);
+				reply.Likes.Remove(loggedUser);
 				this.Data.SaveChanges();
 				return this.Ok(new { status = "Unliked" });
 			}
 			else
 			{
-				var newLike = new Like
-				{
-					UserId = loggedUserId,
-					ReplyId = id
-				};
-				this.Data.Likes.Add(newLike);
+				reply.Likes.Add(loggedUser);
 				this.Data.SaveChanges();
 				return this.Ok(new { status = "Liked" });
 			}

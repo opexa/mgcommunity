@@ -8,14 +8,42 @@
 	using MGCommunity.Models;
 	using System;
 	using Microsoft.AspNet.Identity;
+	using AutoMapper;
+	using System.Collections.Generic;
+	using Models.ViewModels;
 
 	[RoutePrefix("api/Topic")]
-	[SessionAuthorize(Roles = "Administrator")]
+	[SessionAuthorize]
 	public class TopicsController : BaseApiController
 	{
 		public TopicsController(IMGCommunityData data) : base(data) { }
 
 		public TopicsController() : this(new MGCommunityData()) { }
+
+		// GET api/Topic/Info/:id
+		[HttpGet]
+		[Route("Info")]
+		[SessionAuthorize(Roles = "Administrator, Student, Teacher")]
+		public IHttpActionResult Info(int id)
+		{
+			var topic = this.Data.Topics.FindById(id);
+			var data = Mapper.Map<TopicInfoViewModel>(topic);
+
+			return this.Ok(data);
+		}
+
+		// GET api/Topic/Replies/{id}?page={page}
+		[HttpGet]
+		[Route("Replies")]
+		[SessionAuthorize(Roles = "Administrator, Student, Teacher")]
+		public IHttpActionResult Replies(int id, int page)
+		{
+			var skip = (page - 1) * 10;
+			var replies = this.Data.Topics.FindById(id).Replies.Skip(page).Take(10);
+			var data = Mapper.Map<IEnumerable<ReplyViewModel>>(replies);
+
+			return this.Ok(data);
+		}
 
 		// POST api/Topic/Create
 		[HttpPost]
@@ -72,6 +100,7 @@
 		// POST api/Topic/Pin/{id}
 		[HttpPost]
 		[Route("Pin")]
+		[SessionAuthorize(Roles = "Administrator")]
 		public IHttpActionResult Pin(int id)
 		{
 			var topic = this.Data.Topics.All().FirstOrDefault(t => t.Id == id);
@@ -89,6 +118,7 @@
 		// POST api/Topic/Unpin/{id}
 		[HttpPost]
 		[Route("Unpin")]
+		[SessionAuthorize(Roles = "Administrator")]
 		public IHttpActionResult Unpin(int id)
 		{
 			var topic = this.Data.Topics.All().FirstOrDefault(t => t.Id == id);
@@ -106,6 +136,7 @@
 		// POST api/Topic/Lock/{id}
 		[HttpPost]
 		[Route("Lock")]
+		[SessionAuthorize(Roles = "Administrator")]
 		public IHttpActionResult Lock(int id)
 		{
 			var topic = this.Data.Topics.All().FirstOrDefault(t => t.Id == id);
@@ -121,6 +152,7 @@
 		// POST api/Topic/Unlock/{id}
 		[HttpPost]
 		[Route("Unlock")]
+		[SessionAuthorize(Roles = "Administrator")]
 		public IHttpActionResult Unlock(int id)
 		{
 			var topic = this.Data.Topics.All().FirstOrDefault(t => t.Id == id);
@@ -136,6 +168,7 @@
 		// POST api/Topic/Delete/{id}
 		[HttpPost]
 		[Route("Delete")]
+		[SessionAuthorize(Roles = "Administrator")]
 		public IHttpActionResult Delete(int id)
 		{
 			try

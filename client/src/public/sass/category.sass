@@ -35,13 +35,19 @@
             height: 50px
             border-radius: 25px
             transition: all 0.15s ease-in-out
+            box-shadow: 0px 0px 4px 2px rgba(133, 133, 133, 0.5)   
+            @media only screen and (max-width: 985px) 
+              width: 40px
+              height: 40px
             &:hover
               transform: scale(1.1)
-              box-shadow: 1px 3px 5px 0px rgba(133, 133, 133, 0.5)   
 
         .topic-title
           font-size: 1.2rem
           padding-left: 14px
+          @media only screen and (max-width: 985px) 
+            font-size: 1rem
+            padding-left: 10px
           a
             color: #3E3F3A
             font-weight: bold
@@ -50,6 +56,9 @@
           font-size: 0.85rem
           color: #9b9ea0
           padding-left: 14px
+          @media only screen and (max-width: 985px) 
+            font-size: 0.75rem
+            padding-left: 10px
           a
             color: #9b9ea0
             
@@ -57,7 +66,9 @@
         display: flex
         color: #9b9ea0
         font-size: 0.8rem
-        justify-content: space-between          
+        justify-content: space-between
+        @media only screen and (max-width: 985px)        
+          display: none
 
         .participants-info
           padding: 22px 25px
