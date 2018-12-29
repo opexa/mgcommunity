@@ -34,6 +34,7 @@ namespace MGCommunity.Data.Migrations
 					UserName = "admin",
 					FirstName = "Admin",
 					LastName = "Admin",
+					Status = "Администратор",
 					Email = "admin@mgberon.com"
 				};
 				var adminUserCreateResult = userManager.Create(adminUser, "mgadmin1298");
@@ -42,6 +43,11 @@ namespace MGCommunity.Data.Migrations
 				var roleCreateResult = roleManager.Create(new IdentityRole("Administrator"));
 				var roleTeacherCreateResult = roleManager.Create(new IdentityRole("Teacher"));
 				var roleUserCreateResult = roleManager.Create(new IdentityRole("Student"));
+
+				if (!roleTeacherCreateResult.Succeeded)
+				{
+					throw new Exception(string.Join("; ", roleTeacherCreateResult.Errors));
+				}
 
 				if (!roleUserCreateResult.Succeeded)
 				{

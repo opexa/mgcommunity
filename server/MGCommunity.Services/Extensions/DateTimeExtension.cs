@@ -76,23 +76,23 @@
 		{
 			TimeSpan diff = comparedTo.Subtract(date);
 			if (diff.TotalDays >= 365)
-				return string.Concat("на ", date.ToString("MMMM d, yyyy", formatProvider)).TranslateDay();
+				return string.Concat("На ", date.ToString("MMMM d, yyyy", formatProvider)).TranslateDay();
 			if (diff.TotalDays >= 7)
-				return string.Concat("на ", date.ToString("MMMM d", formatProvider).TranslateDay());
+				return string.Concat("На ", date.ToString("MMMM d", formatProvider).TranslateDay());
 			else if (diff.TotalDays > 1)
-				return string.Concat("преди " + diff.TotalDays.ToInt32().ToStringAsText(), " дена");
+				return string.Concat("Преди " + diff.TotalDays.ToInt32().ToStringAsText(), " дена");
 			else if (diff.TotalDays == 1)
-				return "вчера";
+				return "Вчера";
 			else if (diff.TotalHours >= 2)
-				return string.Concat("преди " + diff.TotalHours.ToInt32().ToStringAsText(), " часа");
+				return string.Concat("Преди " + diff.TotalHours.ToInt32().ToStringAsText(), " часа");
 			else if (diff.TotalMinutes >= 60)
-				return "преди повече от час";
+				return "Преди повече от час";
 			else if (diff.TotalMinutes >= 5)
-				return string.Concat("преди " + diff.TotalMinutes.ToInt32().ToStringAsText(), " минути");
+				return string.Concat("Преди " + diff.TotalMinutes.ToInt32().ToStringAsText(), " минути");
 			if (diff.TotalMinutes >= 1)
-				return "преди няколко минути";
+				return "Преди няколко минути";
 			else
-				return "преди по-малко от минута";
+				return "Преди по-малко от минута";
 		}
 
 		public static string TranslateDay(this string date)

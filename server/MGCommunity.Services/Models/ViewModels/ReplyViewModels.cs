@@ -13,7 +13,11 @@ namespace MGCommunity.Services.Models.ViewModels
 
 		public string AuthorAvatar { get; set; }
 
-		public string PostedOn { get; set; }
+		public string AuthorStatus { get; set; }
+
+		public string DetailedDate { get; set; }
+
+		public string RelativeDate { get; set; }
 
 		public string Content { get; set; }
 

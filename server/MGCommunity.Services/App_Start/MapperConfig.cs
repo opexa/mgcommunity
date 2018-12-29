@@ -14,8 +14,10 @@
 			// Reply Maps
 			CreateMap<Reply, ReplyViewModel>()
 				.ForMember(model => model.AuthorUsername, cfg => cfg.MapFrom(reply => reply.Author.UserName))
+				.ForMember(model => model.AuthorStatus, cfg => cfg.MapFrom(reply => reply.Author.Status))
 				.ForMember(model => model.AuthorAvatar, cfg => cfg.MapFrom(reply => reply.Author.Avatar))
-				.ForMember(model => model.PostedOn, cfg => cfg.MapFrom(reply => reply.PostedOn.ToRelativeDateString()))
+				.ForMember(model => model.RelativeDate, cfg => cfg.MapFrom(reply => reply.PostedOn.ToRelativeDateString()))
+				.ForMember(model => model.DetailedDate, cfg => cfg.MapFrom(reply => reply.PostedOn.ToString("dddd, dd MMMM yyyy HH:mm")))
 				.ForMember(model => model.LikesCount, cfg => cfg.MapFrom(reply => reply.Likes.Count))
 				.ForMember(model => model.LastThreeLikes, cfg => cfg.MapFrom(reply => Mapper.Map<IEnumerable<LikeViewModel>>(reply.Likes.Reverse().Take(3))));
 

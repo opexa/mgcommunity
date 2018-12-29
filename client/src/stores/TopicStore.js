@@ -7,7 +7,7 @@ class TopicStore extends EventEmitter {
   handleAction (action) {
     switch (action.type) {
       case topicActions.types.GET_REPLIES: {
-        this.getReplies(action.params)
+        this.getReplies(action.params.id, action.params.page)
         break
       }
       case topicActions.types.GET_INFO: {
@@ -18,9 +18,9 @@ class TopicStore extends EventEmitter {
     }
   }
 
-  getReplies (params) {
+  getReplies (id, page) {
     TopicData
-      .getReplies(params)
+      .getReplies(id, page)
       .then(data => this.emit(this.eventTypes.REPLIES_FETCHED, data))
   }
 

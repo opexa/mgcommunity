@@ -2,8 +2,8 @@ import Data from  './Data'
 const baseUrl = 'topic'
 
 class TopicData {
-  static getReplies(params) {
-    return Data.get(`${baseUrl}/replies?id=${params.id}&page=${params.page}`, true)
+  static getReplies(id, page) {
+    return Data.get(`${baseUrl}/replies?id=${id}&page=${page}`, true)
   }
 
   static getInfo(id) {

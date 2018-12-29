@@ -78,7 +78,8 @@
 				Email = model.Email,
 				StartYear = model.StartYear,
 				Avatar = this.DomainUrl + "/Files/Avatars/generic.jpg",
-				Class = (UserClass)model.Class
+				Class = (UserClass)model.Class,
+				Status = "Ученик"
 			};
 
 			IdentityResult identityResult = await this.UserManager.CreateAsync(user, model.Password);

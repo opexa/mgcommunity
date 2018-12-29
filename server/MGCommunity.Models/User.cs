@@ -29,6 +29,8 @@ namespace MGCommunity.Models
 
 		public UserClass Class { get; set; }
 
+		public string Status { get; set; }
+
 		public virtual ICollection<Reply> Replies { get; set; }
 
 		public virtual ICollection<Reply> Likes { get; set; }

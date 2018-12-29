@@ -5,6 +5,7 @@
 @import './login.css';
 @import './home.css';
 @import './category.css';
+@import './topic.css';
 
 .form-error {
   color: red;

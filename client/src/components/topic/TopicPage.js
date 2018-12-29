@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import topicActions from '../../actions/TopicActions'
 import topicStore from '../../stores/TopicStore'
+import ReplyElement from './ReplyElement'
 
 class TopicPage extends React.Component {
   constructor(props) {
@@ -21,8 +23,12 @@ class TopicPage extends React.Component {
   }
   
   componentWillMount () {
-    topicActions.getInfo(this.state.id)
-    // topicActions.getReplies(this.state.id, this.state.page)
+    let state = this.state
+    topicActions.getInfo(state.id)
+    topicActions.getReplies({
+      id: state.id, 
+      page: state.page
+    })
   }
 
   handleInfoFetched (info) {
@@ -37,8 +43,24 @@ class TopicPage extends React.Component {
   }
 
   render () {
+    let info = this.state.info
+    let replies = this.state.replies
+
     return (
-      <div>Hahah</div>
+      <div>
+        <div className="topic-info">
+          <div className="title">{info.title}</div>
+          <div className="creation">
+            от <Link className="topic-author" to={`/user/${info.authorUsername}`}><b>{info.authorUsername}</b></Link>
+            <span className="topic-created-on">  {info.createdOn}</span>
+          </div>
+        </div>
+        <div className="topic-replies">
+          {replies.map(reply => (
+            <ReplyElement key={reply.id} reply={reply} />
+          ))}
+        </div>
+      </div>
     )
   }
 }

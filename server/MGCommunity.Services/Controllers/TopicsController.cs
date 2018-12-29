@@ -39,7 +39,7 @@
 		public IHttpActionResult Replies(int id, int page)
 		{
 			var skip = (page - 1) * 10;
-			var replies = this.Data.Topics.FindById(id).Replies.Skip(page).Take(10);
+			var replies = this.Data.Topics.FindById(id).Replies.OrderBy(r => r.PostedOn).Skip(skip).Take(10);
 			var data = Mapper.Map<IEnumerable<ReplyViewModel>>(replies);
 
 			return this.Ok(data);
