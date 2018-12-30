@@ -7,7 +7,32 @@
 @import './category.css';
 @import './topic.css';
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .form-error {
   color: red;
   font-weight: bolder;
+}
+
+.footer {
+  height: 100px;
+  background: #3E3F3A;
+  margin-top: 50px;
+  color: white;
+}
+
+.app {
+  min-height: 100%;
+  margin-bottom: -100px;
+}
+
+#root {
+  min-height: 100%;
+}
+
+.container.page-container {
+  min-height: calc(100vh - 154px);
 }

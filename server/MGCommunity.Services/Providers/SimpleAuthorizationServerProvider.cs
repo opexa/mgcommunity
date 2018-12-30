@@ -30,12 +30,13 @@ namespace Saver.Services.Providers
 			this.publicClientId = publicClientId;
 		}
 
-		public static AuthenticationProperties CreateProperties(string username, string role)
+		public static AuthenticationProperties CreateProperties(string username, string role, string avatar)
 		{
 			IDictionary<string, string> data = new Dictionary<string, string>
 			{
 				{ "username", username },
-				{ "role", role }
+				{ "role", role },
+				{ "avatar", avatar }
 			};
 			return new AuthenticationProperties(data);
 		}
@@ -59,10 +60,10 @@ namespace Saver.Services.Providers
 			string userRole = "";
 			using (var dbContext = new MGCContext())
 			{
-				userRole = dbContext.Roles.Find(user.Roles.First().RoleId).Name;
+				userRole = dbContext.Roles.Find(user.Roles.First().RoleId).Name;				
 			}
 
-			AuthenticationProperties properties = CreateProperties(user.UserName, userRole);
+			AuthenticationProperties properties = CreateProperties(user.UserName, userRole, user.Avatar);
 			var ticket = new AuthenticationTicket(oauthIdentity, properties);
 			context.Validated(ticket);
 			context.Request.Context.Authentication.SignIn(cookiesIdentity);

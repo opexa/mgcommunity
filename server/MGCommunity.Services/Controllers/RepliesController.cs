@@ -33,7 +33,7 @@
 			var newReply = new Reply
 			{
 				AuthorId = loggedUserId,
-				Content = model.Content,
+				Content = model.Content.Replace(System.Environment.NewLine, "<br/>"),
 				PostedOn = DateTime.Now,
 				TopicId = model.TopicId
 			};

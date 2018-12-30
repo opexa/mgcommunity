@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import topicActions from '../../actions/TopicActions'
 import topicStore from '../../stores/TopicStore'
+import replyStore from '../../stores/ReplyStore'
 import ReplyElement from './ReplyElement'
+import NewReplyForm from './NewReplyForm'
+import FormHelpers from '../common/forms/FormHelpers'
 
 class TopicPage extends React.Component {
   constructor(props) {
@@ -12,14 +16,19 @@ class TopicPage extends React.Component {
       id: this.props.match.params.id,
       info: {},
       page: 1,
-      replies: []
+      replies: [],
+      newReply: {
+        content: ''
+      }
     }
 
     this.handleInfoFetched = this.handleInfoFetched.bind(this)
     this.handleRepliesFetched = this.handleRepliesFetched.bind(this)
+    this.handleReplyAdded = this.handleReplyAdded.bind(this)
 
     topicStore.on(topicStore.eventTypes.INFO_FETCHED, this.handleInfoFetched)
     topicStore.on(topicStore.eventTypes.REPLIES_FETCHED, this.handleRepliesFetched)
+    replyStore.on(replyStore.eventTypes.REPLY_ADDED, this.handleReplyAdded.bind(thi))
   }
   
   componentWillMount () {
@@ -31,8 +40,23 @@ class TopicPage extends React.Component {
     })
   }
 
+  handleReplySubmit (ev) {
+    ev.preventDefault()
+
+    alert(this.state.newReply.content)
+  }
+
   handleInfoFetched (info) {
     this.setState({ info })
+  }
+
+  handleReplyAdded (data) {
+    // IMPLEMENT PAGE COUNT ON TOPIC DETAILS REQUEST
+    // REDIRECT TO LAST PAGE ON COMMENT ADDED
+  }
+
+  handleReplyInput (ev) {
+    FormHelpers.handleFormChange.bind(this)(ev, 'newReply')
   }
 
   handleRepliesFetched(replies) {
@@ -60,6 +84,9 @@ class TopicPage extends React.Component {
             <ReplyElement key={reply.id} reply={reply} />
           ))}
         </div>
+        <NewReplyForm onSubmit={this.handleReplySubmit.bind(this)} 
+                      onChange={this.handleReplyInput.bind(this)}
+                      content={this.state.newReply.content} />
       </div>
     )
   }

@@ -54,12 +54,24 @@ const getOptions = (method, data) => {
   return options
 }
 
-const handleJsonResponse = res => res.json()
+const handleJsonResponse = (res) => {
+  if (res.status === 401) {
+    return Auth.deauthenticateUser()
+  }
+  return res.json()
+}
 
-const handleServerError = err => ({
-  success: false,
-  error: err.error_description || err || 'Възникна някаква грешка. Моля опитайте отново.'
-})
+const handleServerError = (err) => {
+  console.log(err)
+  if (err.response.status === 401) {
+    return Auth.deauthenticateUser();
+  }
+  
+  return {
+    success: false,
+    error: err.error_description || err || 'Възникна някаква грешка. Моля опитайте отново.'
+  }
+}
 
 const applyAuthorizationHeader = (options, authenticated) => {
   if (authenticated) {
