@@ -10,6 +10,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  background: #e4e4e4;
 }
 
 .form-error {

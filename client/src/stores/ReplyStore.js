@@ -6,8 +6,8 @@ import dispatcher from '../dispatcher';
 class ReplyStore extends EventEmitter {
   handleAction (action) {
     switch (action.type) {
-      case replyActions.type.ADD_REPLY: {
-        this.addReply(action.content)
+      case replyActions.types.ADD_REPLY: {
+        this.addReply(action.data)
         break
       }
       default: break

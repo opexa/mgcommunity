@@ -41,8 +41,7 @@ class HomePage extends React.Component {
               <h2>Списък</h2>
             </div>
             <div className='create-topic-btn'>
-              <i className="fas fa-pen"></i>&nbsp;
-              НОВА ТЕМА
+              <i className="fas fa-pen"></i> НОВА ТЕМА
             </div>
           </div>
           <div className="row">

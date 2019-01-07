@@ -46,7 +46,8 @@
 
 			CreateMap<Topic, TopicInfoViewModel>()
 				.ForMember(model => model.AuthorUsername, cfg => cfg.MapFrom(topic => topic.Author.UserName))
-				.ForMember(model => model.CreatedOn, cfg => cfg.MapFrom(topic => topic.CreatedOn.ToRelativeDateString()));
+				.ForMember(model => model.CreatedOn, cfg => cfg.MapFrom(topic => topic.CreatedOn.ToRelativeDateString()))
+				.ForMember(model => model.MaxPage, cfg => cfg.MapFrom(topic => topic.Replies.Count % 10 == 0 ? topic.Replies.Count /10 : topic.Replies.Count / 10 + 1 ));
 		}
 	}
 }

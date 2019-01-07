@@ -11,7 +11,7 @@ const Topic = (props) => (
       </div>
       <div>
         <p className='topic-title'>
-          <Link to={`/topic/${props.topic.id}`}>{props.topic.title}</Link>
+          <Link to={`/category/${props.categoryId}/topic/${props.topic.id}`}>{props.topic.title}</Link>
         </p>
         <div className='topic-creation'>
           от <Link to={`/user/${props.topic.authorUsername}`}>

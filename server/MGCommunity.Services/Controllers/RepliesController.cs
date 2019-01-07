@@ -1,9 +1,11 @@
 ﻿namespace MGCommunity.Services.Controllers
 {
+	using AutoMapper;
 	using Data;
 	using MGCommunity.Models;
 	using Microsoft.AspNet.Identity;
 	using Models.BindingModels;
+	using Models.ViewModels;
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -25,7 +27,7 @@
 		[Route("Add")]
 		public IHttpActionResult Add(AddReplyBindingModel model)
 		{
-			if (!this.ModelState.IsValid)
+			if (!this.ModelState.IsValid || model == null)
 				return this.BadRequest("Моля уверете се, че сте написали коментар.");
 
 			var loggedUserId = this.User.Identity.GetUserId();
@@ -49,7 +51,10 @@
 
 			this.Data.SaveChanges();
 
-			return this.Ok(new { message = "Коментарът беше публикуван успешно" });
+			return this.Ok(new {
+				message = "Коментарът беше публикуван успешно",
+				reply = Mapper.Map<ReplyViewModel>(newReply)
+			});
 		}
 
 		// PUT api/Reply/Edit

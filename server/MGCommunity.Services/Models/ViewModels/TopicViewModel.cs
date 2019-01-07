@@ -33,5 +33,7 @@ namespace MGCommunity.Services.Models.ViewModels
 		public string AuthorUsername { get; set; }
 
 		public string CreatedOn { get; set; }
+
+		public string MaxPage { get; set; }
 	}
 }

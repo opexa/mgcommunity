@@ -1,5 +1,5 @@
 import React from 'react'
-import Auth from '../account/Auth'
+import Auth from '../../account/Auth'
 
 const NewReplyForm = (props) => (
   <div className="new-reply">

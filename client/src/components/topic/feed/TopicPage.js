@@ -1,21 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import topicActions from '../../actions/TopicActions'
-import topicStore from '../../stores/TopicStore'
-import replyStore from '../../stores/ReplyStore'
+import iziToast from 'izitoast'
+import topicActions from '../../../actions/TopicActions'
+import topicStore from '../../../stores/TopicStore'
+import replyActions from '../../../actions/ReplyActions'
+import replyStore from '../../../stores/ReplyStore'
 import ReplyElement from './ReplyElement'
 import NewReplyForm from './NewReplyForm'
-import FormHelpers from '../common/forms/FormHelpers'
+import FormHelpers from '../../common/forms/FormHelpers'
 
 class TopicPage extends React.Component {
   constructor(props) {
     super(props)
-
+    
     this.state = {
-      id: this.props.match.params.id,
+      id: this.props.match.params.id ,
       info: {},
-      page: 1,
+      page: this.props.match.params.page === undefined ? 1 : this.props.match.params.page,
       replies: [],
       newReply: {
         content: ''
@@ -28,7 +29,7 @@ class TopicPage extends React.Component {
 
     topicStore.on(topicStore.eventTypes.INFO_FETCHED, this.handleInfoFetched)
     topicStore.on(topicStore.eventTypes.REPLIES_FETCHED, this.handleRepliesFetched)
-    replyStore.on(replyStore.eventTypes.REPLY_ADDED, this.handleReplyAdded.bind(thi))
+    replyStore.on(replyStore.eventTypes.REPLY_ADDED, this.handleReplyAdded)
   }
   
   componentWillMount () {
@@ -40,10 +41,21 @@ class TopicPage extends React.Component {
     })
   }
 
+  componentWillUnmount () {
+    topicStore.removeListener(topicStore.eventTypes.INFO_FETCHED, this.handleInfoFetched)
+    topicStore.removeListener(topicStore.eventTypes.REPLIES_FETCHED, this.handleRepliesFetched)
+    replyStore.removeListener(replyStore.eventTypes.REPLY_ADDED, this.handleReplyAdded)
+  }
+
   handleReplySubmit (ev) {
     ev.preventDefault()
 
-    alert(this.state.newReply.content)
+    if (this.validateReplyContent()) {
+      replyActions.addReply({
+        topicId: this.state.id,
+        content: this.state.newReply.content
+      })
+    }
   }
 
   handleInfoFetched (info) {
@@ -51,6 +63,24 @@ class TopicPage extends React.Component {
   }
 
   handleReplyAdded (data) {
+    if ('error' in data) {
+      iziToast.error({ message: data.message })
+    }
+    else {
+      if (this.state.page - 1 < this.state.info.maxPage || this.state.replies.length === 10) {
+        this.props.history.push(`/topic/${this.state.id}/${this.state.info.maxPage}`)
+      }
+      else {
+       let replies = this.state.replies
+       replies.push(data.reply)
+       this.setState({
+         replies: replies,
+         newReply: {
+           content: ''
+         }
+       })
+      }
+    }
     // IMPLEMENT PAGE COUNT ON TOPIC DETAILS REQUEST
     // REDIRECT TO LAST PAGE ON COMMENT ADDED
   }
@@ -64,6 +94,16 @@ class TopicPage extends React.Component {
       replies: replies,
       page: prevState.page += 1
      }))
+  }
+
+  validateReplyContent () {
+    let replyContent = this.state.newReply.content
+
+    if (replyContent.length < 5) {
+      iziToast.warning({ message: 'Коментаръ трябва да е дълъг поне 5 символа'})
+      return false
+    } 
+    return true
   }
 
   render () {

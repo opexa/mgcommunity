@@ -12,8 +12,8 @@ class LoginPage extends React.Component {
 
     this.state = {
       user: {
-        username: 'test',
-        password: 'edtklan12'
+        username: 'admin',
+        password: 'mgadmin1298'
       },
       error: ''
     }

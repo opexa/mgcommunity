@@ -1,13 +1,13 @@
 import dispatcher from '../dispatcher'
 
 const ReplyActions = {
-  type: {
+  types: {
     ADD_REPLY: 'ADD_REPLY'
   },
-  addReply(content) {
+  addReply(data) {
     dispatcher.dispatch({
       type: this.types.ADD_REPLY,
-      content
+      data
     })
   }
 }

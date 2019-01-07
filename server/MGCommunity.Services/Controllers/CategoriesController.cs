@@ -25,7 +25,7 @@
 		{
 			int skip = (page - 1) * 10;
 			var category = this.Data.Categories.FindById(id);
-			var topics = category.Topics.OrderByDescending(t => t.CreatedOn).Skip(skip).Take(10);
+			var topics = category.Topics.OrderByDescending(t => t.Replies.Last().PostedOn).Skip(skip).Take(10);
 
 			var data = Mapper.Map<IEnumerable<ShortTopicViewModel>>(topics);
 			if (page == 1)
@@ -85,6 +85,21 @@
 			this.Data.SaveChanges();
 			
 			return this.Ok(new { message = "Категорията е изтрита." });
+		}
+
+		// GET api/Category/Name/{id}
+		[HttpGet]
+		[Route("Name")]
+		public IHttpActionResult Name(int id)
+		{
+			var category = this.Data.Categories.FindById(id);
+			if (category == null)
+				return this.BadRequest("Не съществува такава категория.");
+						
+			return this.Ok(new {
+				name = category.Name,
+				section = category.Section.Name
+			});
 		}
 	}
 }

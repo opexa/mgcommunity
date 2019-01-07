@@ -16,6 +16,8 @@
 	[SessionAuthorize]
 	public class TopicsController : BaseApiController
 	{
+		public static readonly int RepliesPerPage = 10;
+
 		public TopicsController(IMGCommunityData data) : base(data) { }
 
 		public TopicsController() : this(new MGCommunityData()) { }
@@ -38,7 +40,7 @@
 		[SessionAuthorize(Roles = "Administrator, Student, Teacher")]
 		public IHttpActionResult Replies(int id, int page)
 		{
-			var skip = (page - 1) * 10;
+			var skip = (page - 1) * RepliesPerPage;
 			var replies = this.Data.Topics.FindById(id).Replies.OrderBy(r => r.PostedOn).Skip(skip).Take(10);
 			var data = Mapper.Map<IEnumerable<ReplyViewModel>>(replies);
 

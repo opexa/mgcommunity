@@ -27,6 +27,10 @@ class Auth {
     return window.localStorage.getItem('token') !== null
   }
 
+  static isInRole(role) {
+    return this.getUser().user.role === role
+  }
+
   static deauthenticateUser () {
     window.localStorage.removeItem('token')
   }

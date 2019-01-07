@@ -8,7 +8,7 @@ const Section = (props) => (
       {props.section.categories.map(category => (
         <div className='category' key={category.id}>
           <div className='category-info'>
-            <p className='category-name'><Link to={`/category/feed/${category.id}`}>{category.name}</Link></p>
+            <p className='category-name'><Link to={`/category/${category.id}`}>{category.name}</Link></p>
             <p className="category-description">{category.description}</p>
           </div>
           <div className='category-actions'>
