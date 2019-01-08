@@ -9,7 +9,7 @@ const AddTopicForm = (props) => (
       <div className="first-reply-toolbar">
         TOOLBAR
       </div>
-      <textarea name="content" id="content" cols="30" rows="10" value={props.topic.content} onChange={props.onChange}></textarea>
+      <textarea name="content" id="content" value={props.topic.content} onChange={props.onChange}></textarea>
     </div>
   </form>
 )
