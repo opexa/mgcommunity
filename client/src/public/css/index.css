@@ -13,6 +13,15 @@ html, body {
   background: #e4e4e4;
 }
 
+a {
+  color: #3E3F3A;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3E3F3A;
+}
+
 .form-error {
   color: red;
   font-weight: bolder;
@@ -21,7 +30,6 @@ html, body {
 .footer {
   height: 100px;
   background: #3E3F3A;
-  margin-top: 50px;
   color: white;
 }
 
@@ -35,5 +43,13 @@ html, body {
 }
 
 .container.page-container {
-  min-height: calc(100vh - 154px);
+  min-height: calc(100vh - 54px);
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn:hover {
+  box-shadow: 1px 3px 5px 0px rgba(133, 133, 133, 0.5);
 }

@@ -7,6 +7,8 @@
 
 	public class HomeSectionViewModel
 	{
+		public string Id { get; set; }
+
 		public string Name { get; set; }
 
 		public IEnumerable<ShortCategoryViewModel> Categories { get; set; }

@@ -22,9 +22,9 @@ const Routes = (props) => (
     <Route path='/account/register' component={RegisterPage} />
     <PrivateRoute path='/account/logout' component={LogoutPage} />
 
-    <PrivateRoute path='/category/:categoryId/topic/:id/:page?' component={withRouter(TopicPage)} />
-    <PrivateRoute path='/category/:id/add' component={AddTopicPage} />
-    <PrivateRoute path='/category/:id' component={FeedPage} />
+    <PrivateRoute path='/:sectionId/category/:categoryId/topic/:id/:page?' component={withRouter(TopicPage)} />
+    <PrivateRoute path='/:sectionId/category/:id/add' component={AddTopicPage} />
+    <PrivateRoute path='/:sectionId/category/:id' component={FeedPage} />
     
     <Route path='/' component={NotFoundPage} />
   </Switch>

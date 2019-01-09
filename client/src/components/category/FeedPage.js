@@ -13,6 +13,7 @@ class FeedPage extends React.Component {
     this.state = {
       category: {},
       categoryId: this.props.match.params.id,
+      sectionId: this.props.match.params.sectionId,
       topics: [],
       page: 1
     }
@@ -49,22 +50,23 @@ class FeedPage extends React.Component {
   }
 
   render () {
+    let state = this.state
     return (
       <div className='feed-container'>
         <div className="category-info">
           <div className='category-name'>
-            <h2>{this.state.category.name}</h2>
-            <p className='category-description'>{this.state.category.description}</p>
+            <h2>{state.category.name}</h2>
+            <p className='category-description'>{state.category.description}</p>
           </div>
           <div className="add-topic">
-            <Link to={`/category/${this.state.categoryId}/add`}>
+            <Link to={`/${state.sectionId}/category/${state.categoryId}/add`}>
               <i className="fas fa-pen"></i> НОВА ТЕМА
             </Link>
           </div>
         </div>
         <div className="category-topics">
-          {this.state.topics.map(topic => 
-            <Topic topic={topic} categoryId={this.state.categoryId} key={topic.id}/>
+          {state.topics.map(topic => 
+            <Topic topic={topic} sectionId={state.sectionId} categoryId={state.categoryId} key={topic.id}/>
           )}
         </div>
       </div>
