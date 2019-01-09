@@ -9,7 +9,7 @@ const AddTopicForm = (props) => (
       <div className="first-reply-toolbar">
         TOOLBAR
       </div>
-      <textarea name="content" id="content" value={props.topic.content} onChange={props.onChange}></textarea>
+      <textarea name="firstReply" id="firstReply" value={props.topic.firstReply} onChange={props.onChange}></textarea>
     </div>
     <div className="new-topic-actions">
       <input type="submit" className="btn btn-primary btn-lg new-topic-submit" value='Добави' onClick={props.onSubmit} />

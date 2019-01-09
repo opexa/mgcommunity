@@ -96,7 +96,7 @@
 			this.Data.Replies.Add(firstReply);
 			this.Data.SaveChanges();
 
-			return this.Ok(new { message = "Темата е добавена успешно :) " });
+			return this.Ok(new { message = "Темата е добавена успешно :) ", added = true });
 		}
 
 		// POST api/Topic/Pin/{id}

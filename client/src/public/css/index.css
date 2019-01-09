@@ -44,6 +44,7 @@ a:hover {
 
 .container.page-container {
   min-height: calc(100vh - 54px);
+  padding-bottom: 50px;
 }
 
 .btn {

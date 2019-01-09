@@ -5,6 +5,8 @@ import iziToast from 'izitoast'
 import FormHelpers from '../../common/forms/FormHelpers'
 import categoryActions from '../../../actions/CategoryActions'
 import categoryStore from '../../../stores/CategoryStore'
+import topicActions from '../../../actions/TopicActions'
+import topicStore from '../../../stores/TopicStore'
 import AddTopicForm from './AddTopicForm'
 
 import '../../../public/css/add-topic.css'
@@ -21,14 +23,21 @@ class AddTopicPage extends React.Component {
         id: this.props.match.params.id
       },
       topic: {
-        title: '',
-        content: ''
+        title: 'Нова тема нова тема',
+        firstReply: 'Нека пробваме дали работи пък'
       }
     }
 
     this.handleNameFetched = this.handleNameFetched.bind(this)
+    this.handleTopicAdded = this.handleTopicAdded.bind(this)
 
     categoryStore.on(categoryStore.eventTypes.CATEGORY_NAME_FETCHED, this.handleNameFetched)
+    topicStore.on(topicStore.eventTypes.TOPIC_ADDED, this.handleTopicAdded)
+  }
+
+  componentWillUnmount () {
+    categoryStore.removeListener(categoryStore.eventTypes.CATEGORY_NAME_FETCHED, this.handleNameFetched)
+    topicStore.removeListener(topicStore.eventTypes.TOPIC_ADDED, this.handleTopicAdded)
   }
 
   componentWillMount () {
@@ -43,7 +52,9 @@ class AddTopicPage extends React.Component {
     ev.preventDefault()
 
     if (this.validateForm()) {
-      alert ()
+      let data = this.state.topic
+      data.categoryId = this.state.category.id
+      topicActions.addTopic(data)
     }
   }
 
@@ -56,11 +67,18 @@ class AddTopicPage extends React.Component {
       isFormValid = false
       iziToast.warning({ message: 'Заглавието трябва да е съдържа поне 5 символа.'})
     }
-    if (post.content.length < 20) {
+    if (post.firstReply.length < 20) {
       isFormValid = false
       iziToast.warning({ message: 'Съдържанието на темата трябва да поне 20 символа дълго.'})
     }
     return isFormValid
+  }
+
+  handleTopicAdded (data) {
+    if (data.added) {
+      iziToast.success({ message: data.message })
+      this.props.history.push(`/${this.state.sectionId}/category/${this.state.category.id}`)
+    }
   }
 
   handleNameFetched (data) {
@@ -71,19 +89,6 @@ class AddTopicPage extends React.Component {
         id: prevState.category.id
       }
     }))
-  }
-
-  componentDidMount() {
-    window.location.hash = window.decodeURIComponent(window.location.hash);
-    const scrollToAnchor = () => {
-      const hashParts = window.location.hash.split('#');
-      if (hashParts.length > 2) {
-        const hash = hashParts.slice(-1)[0];
-        document.querySelector(`#${hash}`).scrollIntoView();
-      }
-    };
-    scrollToAnchor();
-    window.onhashchange = scrollToAnchor;
   }
 
   render () {

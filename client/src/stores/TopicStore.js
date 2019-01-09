@@ -14,6 +14,10 @@ class TopicStore extends EventEmitter {
         this.getInfo(action.id)
         break
       }
+      case topicActions.types.ADD_TOPIC: {
+        this.addTopic(action.topic)
+        break
+      }
       default: break
     }
   }
@@ -29,12 +33,19 @@ class TopicStore extends EventEmitter {
       .getInfo(id)
       .then(data => this.emit(this.eventTypes.INFO_FETCHED, data))
   }
+
+  addTopic(topic) {
+    TopicData
+      .addTopic(topic)
+      .then(data => this.emit(this.eventTypes.TOPIC_ADDED, data))
+  }
 }
 
 let topicStore = new TopicStore()
 topicStore.eventTypes = {
   REPLIES_FETCHED: 'replies_fetched',
-  INFO_FETCHED: 'info_fetched'
+  INFO_FETCHED: 'info_fetched',
+  TOPIC_ADDED: 'topic_added'
 }
 
 dispatcher.register(topicStore.handleAction.bind(topicStore))
