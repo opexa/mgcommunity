@@ -6,6 +6,7 @@
 @import './home.css';
 @import './category.css';
 @import './topic.css';
+@import './account.css';
 
 html, body {
   height: 100%;
