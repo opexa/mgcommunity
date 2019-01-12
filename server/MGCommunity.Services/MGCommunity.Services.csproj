@@ -306,6 +306,7 @@
     <Compile Include="Models\BindingModels\ReplyBindingModels.cs" />
     <Compile Include="Models\BindingModels\SectionBindingModels.cs" />
     <Compile Include="Models\BindingModels\TopicBindingModels.cs" />
+    <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModels.cs" />
     <Compile Include="Models\ViewModels\LikeViewModel.cs" />
     <Compile Include="Models\ViewModels\ReplyViewModels.cs" />

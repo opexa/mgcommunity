@@ -62,14 +62,13 @@ const handleJsonResponse = (res) => {
 }
 
 const handleServerError = (err) => {
-  console.log(err)
   if (err.response.status === 401) {
     return Auth.deauthenticateUser();
   }
   
   return {
     success: false,
-    error: err.error_description || err || 'Възникна някаква грешка. Моля опитайте отново.'
+    error: (err.error_description || err) || 'Възникна някаква грешка. Моля опитайте отново.'
   }
 }
 

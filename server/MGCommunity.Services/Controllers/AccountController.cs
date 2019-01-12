@@ -21,7 +21,10 @@
 	using Models.BindingModels;
 	using UserSessionUtils;
 	using System.Linq;
+	using AutoMapper;
+	using Models.ViewModels;
 
+	[SessionAuthorize]
 	[RoutePrefix("api/Account")]
 	public class AccountController : BaseApiController
 	{
@@ -49,6 +52,18 @@
 			{
 				return Request.GetOwinContext().Authentication;
 			}
+		}
+
+		// GET api/Account/Register
+		[HttpGet]
+		[Route("Details")]
+		public IHttpActionResult Details()
+		{
+			var loggedUserId = this.User.Identity.GetUserId();
+			var loggedUser = this.Data.Users.FindById(loggedUserId);
+
+			var data = Mapper.Map<AccountDetailsViewModel>(loggedUser);
+			return this.Ok(data);
 		}
 
 		// POST api/Account/Register
@@ -144,7 +159,6 @@
 
 		// POST api/Account/Logout
 		[HttpPost]
-		[SessionAuthorize]
 		[Route("Logout")]
 		public IHttpActionResult Logout()
 		{

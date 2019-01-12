@@ -11,6 +11,9 @@
 	{
 		public MapperConfig()
 		{
+			// Account Maps
+			CreateMap<User, AccountDetailsViewModel>();
+
 			// Reply Maps
 			CreateMap<Reply, ReplyViewModel>()
 				.ForMember(model => model.AuthorUsername, cfg => cfg.MapFrom(reply => reply.Author.UserName))

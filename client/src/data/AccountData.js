@@ -9,6 +9,10 @@ class AccountData {
   static login(user) {
     return Data.post(`${baseUrl}/login`, user, false)
   }
+
+  static details() {
+    return Data.get(`${baseUrl}/details`, true)
+  }
 }
 
 export default AccountData
